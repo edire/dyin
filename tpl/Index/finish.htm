@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>完成-Dyin</title>
+<link href="public/css/style.css" rel="stylesheet" type="text/css" />
+<script src="public/js/option.js"></script>
+</head>
+<body>
+<div class="finish_box">
+<p class="title">完成Dyin</p>
+<form action="<{spUrl c=dyin a=finishaction id=<{$id}>}>" method="post" enctype="multipart/form-data" name="finish">
+<p class="finish_pic">验证图像<input type="file" name="pic" class="finish_load ipt"/></p>
+<p class="finish_submit">
+			<a href="javascript:;" onclick="gofinish()" class="btnblue">
+				<span class="btnblue_span finish_btn">完成</span>
+			</a>
+			<a href="javascript:;" onclick="javascript:history.go(-1);" class="btnblue">
+				<span class="btnblue_span finish_btn">取消</span>
+			</a>
+</p>
+</form>
+</div>
+</body>
+</html>

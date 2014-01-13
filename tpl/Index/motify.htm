@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>修改Dyin-Dyin</title>
+<link href="public/css/style.css" rel="stylesheet" type="text/css" />
+<script src="public/js/jquery.min.js"></script>
+<!--[if lt IE 9]>
+<script src="public/js/html5.js"></script>
+<![endif]-->
+<script src="public/js/option.js"></script>
+<script>
+
+</script>
+</head>
+
+<body>
+<div class="head">
+ <{include 'Index/head.htm'}>
+</div>
+<!-- head end -->
+
+<div class="content">
+  <div class="left">
+ <{include 'Index/left.htm'}>
+  </div>
+  <div class="center">
+		<div class="info">
+			<p class="title">修改Dyin</p>
+			<ul class="info_box">
+			<{foreach from=$yin item=dyin}>
+      <div class="e_form">
+	  <form action="<{spUrl c=dyin a=motifyaction}>" method="post" name="motifydyin">
+        <p class="e_contect"> 联系方式
+		  	<select class="e_ty ipt" name="type">
+				<option value="QQ">QQ</option>
+				<option value="QQ">手机</option>
+				<option value="QQ">微信</option>
+			</select>
+          <input name="contect" class="e_con ipt" placeholder="qq号/手机号..." value="<{$dyin.contect}>"/>
+        </p>
+        <p class="e_name"> 署名
+          <input name="name" class="e_n ipt" placeholder="姓名/昵称..." value="<{$dyin.name}>"/>
+        </p>
+        <textarea type="text" class="e_content ipt" name="content" placeholder="在这里输入内容。" style="
+resize: none;" ><{$dyin.content}></textarea>
+<div  class="e_bottom">
+		<p class="e_ps">
+			备注：<input class="e_p ipt" type="text" name="ps" placeholder="留给Dyiner的话（选填）" value="<{$dyin.ps}>"></input>
+		</p>
+		<input value="<{$dyin.id}>" type="hidden" name="id">
+        <a href="javascript:;" onclick="motifyaction()" class="e_button"><span class="e_submit">修改Dyin</span></a>
+      </div>
+	  </form>
+	 </div>
+			<{/foreach}>
+			</ul>
+		</div>
+  </div>
+  <div class="right">
+		<{include 'Index/right.htm'}>
+  </div>
+</div>
+<div class="footer">
+		<{include 'Index/foot.htm'}>
+</div>
+
+		<{include 'Index/quiksign.htm'}>
+</body>
+</html>

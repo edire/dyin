@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>我的账户-Dyin</title>
+<link href="public/css/style.css" rel="stylesheet" type="text/css" />
+<script src="public/js/jquery.min.js"></script>
+<!--[if lt IE 9]>
+<script src="public/js/html5.js"></script>
+<![endif]-->
+<script src="public/js/option.js"></script>
+<script>
+
+</script>
+</head>
+
+<body>
+<div class="head">
+ <{include 'Index/head.htm'}>
+</div>
+<!-- head end -->
+
+<div class="content">
+  <div class="left">
+ <{include 'Index/left.htm'}>
+  </div>
+  <div class="center">
+		<div class="info">
+			<p class="title">个人信息</p>
+			<ul class="info_box">
+			<{foreach from=$user item=userin}>
+				<li class="info_col">
+						<p class="info_p info_name">
+							头像
+						</p>
+						<img class="info_p info_pic" src="<{$userin.pic}>">
+				</li>
+				<li class="info_col">
+						<p class="info_p info_name">
+							登录名
+						</p>
+						<p class="info_p info_content">
+							<{$userin.username}>
+						</p>
+				</li>
+				<li class="info_col">
+						<p class="info_p info_name">
+							E-mail
+						</p>
+						<p class="info_p info_content">
+							<{$userin.email}>
+						</p>
+				</li>
+				<li class="info_col">
+						<p class="info_p info_name">
+							D币
+						</p>
+						<p class="info_p info_content">
+							<{$userin.db}>
+						</p>
+				</li>
+				<li class="info_col">
+						<p class="info_p info_name">
+							财富
+						</p>
+						<p class="info_p info_content">
+							<{$userin.money}>
+						</p>
+				</li>
+				<li class="info_col">
+						<p class="info_p info_name">
+							QQ
+						</p>
+						<p class="info_p info_content">
+							<{$userin.qq}>
+						</p>
+				</li>
+				<li class="info_col">
+						<p class="info_p info_name">
+							最后登录时间
+						</p>
+						<p class="info_p info_content">
+							<{$userin.logintime}>
+						</p>
+				</li>
+				<li class="info_col">
+						<p class="info_p info_name">
+							注册时间
+						</p>
+						<p class="info_p info_content">
+							<{$userin.signtime}>
+						</p>
+				</li>
+				<p class="edit_ok">
+				<a href="javascript:;" onclick="editpassword()" class="f-right btns"><span class="btns_a info_edit">修改密码</span></a></p>
+				<a href="javascript:;" onclick="edit()" class="f-right btns"><span class="btns_a info_edit">修改信息</span></a>
+			<{/foreach}>
+			</ul>
+		</div>
+  </div>
+  <div class="right">
+		<{include 'Index/right.htm'}>
+  </div>
+</div>
+<div class="footer">
+		<{include 'Index/foot.htm'}>
+</div>
+
+		<{include 'Index/quiksign.htm'}>
+</body>
+</html>

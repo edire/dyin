@@ -1,0 +1,30 @@
+ <div class="head_content"><a href="<{spUrl c=main}>" class="logo_a"><img src="public/images/Dyin.png" class="logo"/></a>
+    <ul class="nav">
+      <li> <a href="<{spUrl c=main}>"><em class="home bs"></em>首页</a> </li>
+      <li> <a href="#"><em class="dxing bs"></em>D星</a> </li>
+    </ul>
+    <div class="head_right">
+      <div class="searchbox">
+        <form action="<{spUrl c=main a=search}>" method="get" name="searchform">
+			<input type="hidden" name="c" value="main">
+			<input type="hidden" name="a" value="search">
+          <input type="text" class="search" placeholder="搜索Dyin" name="keyword"/>
+         <a href="javascript:;" onclick="sch()" class="search_submit"></a>
+        </form>
+      </div>
+	  <{if $uid!=""}>
+      <ul class="self">
+		<{foreach from=$userinfo item=user}>
+        <li class="self_li"><a href="#"><{$user.username}></a></li>
+		<{/foreach}>
+        <li class="self_li"><a href="#"><!--<em class="news"></em>-->消息</a></li>
+        <li class="self_li"><a href="#">充值</a></li>
+        <li class="self_li"><a href="<{spUrl c=admin a=myinfo}>">个人中心</a></li>
+        <li class="self_li"><a href="javascript:;" onclick="loginout()">退出</a></li>
+      </ul><{else}>
+		<p class="no_login">
+			您还不是Dyin用户？ <a href="<{spUrl c=main a=sign}>" onclick="">注册</a><span class="span_line">|</span><a href="<{spUrl c=main a=login}>">登陆</a> 
+		<p>
+	  <{/if}>
+    </div>
+  </div>

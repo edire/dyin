@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>确认完成-Dyin</title>
+<link href="public/css/style.css" rel="stylesheet" type="text/css" />
+<script src="public/js/option.js"></script>
+</head>
+<body>
+<div class="affirm_box">
+<p class="title">确认完成</p>
+<{foreach from=$yin item=dyin}>
+<div class="dyin affirm_dyin">
+
+			<p class="dyin_content">
+			<{$dyin.content}>
+			</p>
+			<p class="dyin_name"><{$dyin.name}></p>
+			<p class="dyin_type">需要通过<{$dyin.type}>Dyin</p>
+			<p class="dyin_time"><{$dyin.createtime}></p>
+			<p class="dyin_ps"><{$dyin.ps}></p>
+		</div>
+		
+			<img src="<{$dyin.pic}>" class="affirm_pic">
+<{/foreach}>
+<p class="affirm_submit">
+			<a href="javascript:;" onclick="affirm(<{$dyin.id}>)" class="btnblue">
+				<span class="btnblue_span affirm_btn">确认</span>
+			</a>
+			<a href="javascript:;" onclick="javascript:history.go(-1);" class="btnblue">
+				<span class="btnblue_span affirm_btn">取消</span>
+			</a>
+</p>
+</form>
+</div>
+</body>
+</html>

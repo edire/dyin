@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Dyin</title>
+<link href="public/css/style.css" rel="stylesheet" type="text/css" />
+<script src="public/js/jquery.min.js"></script>
+<!--[if lt IE 9]>
+<script src="public/js/html5.js"></script>
+<![endif]-->
+<script src="public/js/blocksit.min.js"></script>
+<script src="public/js/option.js"></script>
+<script>
+$(document).ready(function() {
+
+	
+	//blocksit define
+		$('#container').BlocksIt({
+			numOfCol: 2,
+			offsetX: 0,
+			offsetY: 2,
+		});
+		
+	
+	//window resize
+	
+});
+
+</script>
+</head>
+
+<body>
+<div class="head">
+ <{include 'Index/head.htm'}>
+</div>
+<!-- head end -->
+
+<div class="content">
+  <div class="left">
+ <{include 'Index/left.htm'}>
+  </div>
+  <div class="center">
+ <{include 'Index/edit.htm'}>
+	<div class="d_list" id="container">
+	<{foreach from=$yin item=dyin}>
+		<div class="grid">
+		<div class="dyin">
+			<div class="dyin_info">
+				<a href="javascript:;" onclick="goinfo('<{$dyin.uid}>')" class="dyin_pic_a"><img src="<{$dyin.userpic}>" class="dyin_pic"></a>
+				<div class="dyin_user_info">
+					<p class="dyin_username"><a href="javascript:;" onclick="goinfo('<{$dyin.uid}>')"><{$dyin.username}></a></p>
+					<p class="dyin_fans"><!-- <a href="#">关注</a>221 <a href="#">粉丝</a>1111 --></p>
+
+				</div>
+									<p class="ling">
+						<a href="javascript:;" onclick="take('<{$dyin.id}>')" class="btns">
+							<span class="btns_a">领取</span>
+						</a>
+					</p>
+			</div>
+			<p class="dyin_content">
+			<{$dyin.content}>
+			</p>
+			<p class="dyin_name"><{$dyin.name}></p>
+			<p class="dyin_type">需要通过<{$dyin.type}>Dyin</p>
+			<p class="dyin_time"><{$dyin.createtime}></p>
+			<p class="dyin_ps"><{$dyin.ps}></p>
+		</div>
+		</div>
+<{/foreach}>
+	</div>		
+<{if $pager}>
+	<div class="page">
+
+<!--在当前页不是第一页的时候，显示前页和上一页-->
+<{if $pager.current_page != $pager.first_page}>
+<a href="<{spUrl c=main a=index page=$pager.first_page}>" class="page_a">首页</a>
+<a href="<{spUrl c=main a=index page=$pager.prev_page}>" class="page_a">上一页</a> 
+<{/if}>
+<!--开始循环页码，同时如果循环到当前页则不显示链接-->
+<{foreach from=$pager.all_pages item=thepage}>
+	<{if $thepage != $pager.current_page}>
+		<a href="<{spUrl c=main a=index page=$thepage}>" class="page_a"><{$thepage}></a>
+	<{else}>
+		<a class="thepage"><span><{$thepage}></span></a>
+	<{/if}>
+<{/foreach}>
+<!--在当前页不是最后一页的时候，显示下一页和后页-->
+<{if $pager.current_page != $pager.last_page}>
+<a href="<{spUrl c=main a=index page=$pager.next_page}>" class="page_a">下一页</a>
+<a href="<{spUrl c=main a=index page=$pager.last_page}>" class="page_a">末页</a>
+<{/if}>
+	</div>
+<{/if}>
+  </div>
+  <div class="right">
+		<{include 'Index/right.htm'}>
+  </div>
+</div>
+<div class="footer">
+		<{include 'Index/foot.htm'}>
+</div>
+
+		<{include 'Index/quiksign.htm'}>
+</body>
+</html>

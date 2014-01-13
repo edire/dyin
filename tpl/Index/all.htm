@@ -1,0 +1,34 @@
+<style>
+td{width:100px;}
+</style>
+在Dyin，你可以发布你一直没有说出口的话，让别人帮你传递，也可以帮别人传递你的声音。
+<table>
+<tbody>
+	<tr>
+		<td>D号</td>
+		<td>联系方式</td>
+		<td>内容</td>
+		<td>称呼</td>
+		<td>备注</td>
+		<td>更新时间</td>
+		<td>领取人</td>
+		<td>操作</td>
+	</tr>
+	<{foreach from=$yin item=dyin}>
+	<tr>
+		<td><{$dyin.id}></td>
+		<td><{$dyin.contect}></td>
+		<td><{$dyin.content}></td>
+		<td><{$dyin.name}></td>
+		<td><{$dyin.ps}></td>
+		<td><{$dyin.createtime}></td>
+		<td><{$dyin.ricname}></td>
+		<td><{if $dyin.rid == 0}>
+				<a href="<{spUrl c=dyin a=take id=<{$dyin.id}>}>">领取</a>
+			<{/if}>
+		</td>
+	</tr>
+<{/foreach}>
+	
+</tbody>
+</table>
