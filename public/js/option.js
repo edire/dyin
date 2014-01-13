@@ -64,3 +64,11 @@ function editpasswordaction(){	//修改密码动作
 function sch(){//搜索内容提交
 	document.searchform.submit();
 }
+function help(){//帮助
+	var help_box=document.getElementById('help_box');
+	if (help_box.style.display=="none"){
+		help_box.style.display="block";
+	}else{
+		help_box.style.display="none";
+	}
+}
