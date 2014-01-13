@@ -13,10 +13,10 @@ $spConfig = array(
 		),
 	), 
 	"db" => array( 					// 数据库设置
-                'host' => 'localhost',  // 数据库地址，一般都可以是localhost
-                'login' => 'root', // 数据库用户名
-                'password' => '8641683', // 数据库密码
-                'database' => 'dyin', // 数据库的库名称
+                'host' => '10.4.3.92',  // 数据库地址，一般都可以是localhost
+                'login' => 'uoyIzpMH4lqZl', // 数据库用户名
+                'password' => 'pZyeLCkG5bZPN', // 数据库密码
+                'database' => 'd2e482acc124f43309786873e6125b9a9', // 数据库的库名称
         ),
  
 
