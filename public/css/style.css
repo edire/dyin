@@ -109,6 +109,26 @@ font-size: 20px;
 border-bottom: 4px solid #3d78ff;
 overflow: hidden;
 }
+.help_box {
+position: absolute;
+width: 300px;
+height: 112px;
+margin-left: 211px;
+margin-top: 56px;
+background: rgba(0, 0, 255, 0.26);
+padding: 24px;
+z-index: 100;
+border: 1px solid #001E5F;
+color: #FFFFE2;
+font-size: 15px;
+box-shadow: -1px 2px 5px 2px rgba(6, 8, 9, 0.31);
+line-height: 27px;
+text-shadow: 3px 1px 7px #000;
+}.help_close {
+display: block;
+float: right;
+color: #FFFFFF !important;
+}
 /*head start*/
 .head {
 	width: 100%;
@@ -805,3 +825,4 @@ padding: 9px 102px;
 .affirm_submit{
 text-align:center;
 }
+
