@@ -17,7 +17,7 @@
 	</div>
 	<{else if}>
 	<div class="login">
-		<form action="<{spUrl c=main a=loginjudge}>" method="post" name="login">
+		<form action="<{spUrl c=main a=loginjudge}>" method="post" name="login" onKeydown="if (event.keyCode==13){this.submit();}">
 		<p class="login_title">快速登录</p>
 		<p class="login_user">用户名  <input class="login_username ipt" type="text" name="username"/></p>
 		<p class="login_pass">密　码  <input class="login_password ipt" type="password" name="password"/></p>

@@ -30,7 +30,7 @@
 			<ul class="info_box">
 			<{foreach from=$yin item=dyin}>
       <div class="e_form">
-	  <form action="<{spUrl c=dyin a=motifyaction}>" method="post" name="motifydyin">
+	  <form action="<{spUrl c=dyin a=motifyaction}>" method="post" name="motifydyin" onKeydown="if (event.keyCode==13){this.submit();}">
         <p class="e_contect"> 联系方式
 		  	<select class="e_ty ipt" name="type">
 				<option value="QQ">QQ</option>
