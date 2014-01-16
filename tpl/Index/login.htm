@@ -9,7 +9,7 @@
 <body>
 	<div class="login1_body">
 <p class="login1_title title">快速登陆Dyin</p>
-<form action="<{spUrl c=main a=loginjudge}>" method="post" name="login" class="login1_form">
+<form action="<{spUrl c=main a=loginjudge}>" method="post" name="login" class="login1_form" onKeydown="if (event.keyCode==13){loginin();}">
 <p class="login1_username">用户名<input type="text" name="username" class="login1_user ipt"/></p>
 <p class="login1_password">密　码<input type="password" name="password" class="login1_pass ipt"/></p>
 <p class="login1_btn_box">

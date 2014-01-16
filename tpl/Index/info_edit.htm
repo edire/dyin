@@ -29,7 +29,7 @@
 			<p class="title">个人信息</p>
 			<ul class="info_box">
 			<{foreach from=$user item=userin}>
-				<form action="<{spUrl c=admin a=infoeditaction}>" name="infoedit" method="post" onKeydown="if (event.keyCode==13){this.submit();}">
+				<form action="<{spUrl c=admin a=infoeditaction}>" name="infoedit" method="post" onKeydown="if (event.keyCode==13){editok();}">
 				<li class="info_col">
 						<p class="info_p info_name">
 							E-mail
