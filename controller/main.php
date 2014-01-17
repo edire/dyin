@@ -146,6 +146,9 @@ function search(){
 		}
 			$this->display("Index/sign.htm");
 	}
+	function help(){
+		$this->display("Index/help.htm");
+	}
 //登陆跳转页面
 
 	function loginjudge(){
