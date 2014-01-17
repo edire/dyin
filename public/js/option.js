@@ -13,10 +13,6 @@ function create(){//提交创建dyin表单
 		name.focus();
 		return 0;
 	}
-	if(content.innerHTML==""){
-		content.focus();
-		return 0;
-	}
 	document.creatdyin.submit();
 }
 function loginin(){//提交登陆表单
