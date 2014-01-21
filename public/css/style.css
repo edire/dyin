@@ -18,6 +18,16 @@ font: 12px/1.125 Arial,Helvetica,sans-serif;
 }
 input,textarea,select{ outline:0; }
 /*public*/
+#tip {
+overflow: hidden;
+font-size: 14px;
+padding: 9px;
+margin-top: 8px;
+background: #DDDEFF;
+border: 1px dotted #003DFF;
+line-height: 23px;
+color: #100083;
+}
 .news{
 background-position: 0 -621px;
 width: 5px;
