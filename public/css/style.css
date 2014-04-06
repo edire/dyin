@@ -119,6 +119,9 @@ font-size: 20px;
 border-bottom: 4px solid #3d78ff;
 overflow: hidden;
 }
+.phone{
+display:none;
+}
 /*head start*/
 .head {
 	width: 100%;
@@ -818,3 +821,73 @@ text-align:center;
 
 .help{font-size:16px;
 line-height:25px}
+
+
+
+@media screen and (max-width: 980px){
+.phone{
+display:block;
+}
+.head{
+	display:none;
+}
+.content{
+	margin-top:0px;
+	width:100%;	
+}
+.left{
+	width:100%;
+}
+.left_nav{
+display: -webkit-box;
+display: -moz-box;
+display: box;
+border-bottom:2px solid #ddd;
+}
+
+.left_nav_li{
+-moz-box-flex: 1.0;
+-webkit-box-flex: 1.0;
+box-flex: 1.0;
+display: box;
+	border-left: 1px solid #fff;
+	border-right: 1px solid #ccc;
+}
+.left_nav_a{
+text-align:center;
+}
+.left_nav_li:first-child{
+	border-left:0;
+}
+.left_nav_li:last-child{
+	border-right:0;
+}
+.center{
+	margin:10px 0;
+	width:100%;
+}
+.e_form p{
+	clear:both;
+	margin:10px 10px;
+}
+.e_button{
+	clear:both;
+	margin:10px 5em;
+}
+.e_content {
+	width:100%;
+	display:block;
+	margin:10px auto;
+}
+.sign_body{
+width:85%;
+margin:10em auto;
+}
+.right{
+display:none;
+}
+.login1_body{
+width:85%;
+margin:10em auto;
+}
+}
