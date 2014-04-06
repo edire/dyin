@@ -48,7 +48,7 @@ class admin extends spController{
 					$conditions=array('id'=>$dyin[$i][rid]);	//领取人的id
 					$duser=$user->findAll($conditions);		//取出领取人数据
 					$dyin[$i][ricname]=$duser[0][username];	//取出领取人的名字赋值
-					$dyin[$i][userpic]=$duser[0][userpic];	//取出领取人的名字赋值
+					$dyin[$i][userpic]=$duser[0][pic];	//取出领取人的名字赋值
 					if($dyin[$i][rid]=="0"){					//如果领取id=0，就提示暂无
 						$dyin[$i][ricname]="暂无";
 					}
@@ -96,6 +96,7 @@ class admin extends spController{
 					$conditions=array('id'=>$dyin[$i][rid]);	//领取人的id
 					$duser=$user->findAll($conditions);		//取出领取人数据
 					$dyin[$i][ricname]=$duser[0][username];	//取出领取人的名字赋值
+					$dyin[$i][userpic]=$duser[0][pic];		//给头像赋值
 					if($dyin[$i][rid]=="0"){					//如果领取id=0，就提示暂无
 						$dyin[$i][ricname]="暂无";
 					}
