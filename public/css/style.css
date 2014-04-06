@@ -604,13 +604,14 @@ color: #3d78ff;
 }
 /*footer*/
 .footer {
-	height: 80px;
-	width: 100%;
-	line-height: 80px;
-	background: #666666;
-	text-align: center;
-	clear:both;
-	color:#fff;
+height: 80px;
+width: 100%;
+line-height: 23px;
+background: #666666;
+text-align: center;
+clear: both;
+color: #fff;
+padding-top: 27px;
 }
 .footer a{
 	color:#fff;
