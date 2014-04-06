@@ -13,4 +13,8 @@
 
 	  
     </ul>
-	<p class="left_name"><{$info.username}> | D 号:<{$info.id}> | D 币:<{$info.db}> | 财富:<{$info.money}></p>
+	  <{if $uid!=""}>
+		  <{foreach from=$userinfo item=info}>
+	<p class="left_name phone"><{$info.username}> | D 号:<{$info.id}> | D 币:<{$info.db}> | 财富:<{$info.money}></p>
+		<{/foreach}>
+	  <{/if}>
