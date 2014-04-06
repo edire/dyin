@@ -838,8 +838,10 @@ display:block;
 	margin-top:0px;
 	width:100%;	
 }
-.left{
-	width:100%;
+.left {
+width: 100%;
+clear: both;
+float: none;
 }
 .left_nav{
 display: -webkit-box;
@@ -865,9 +867,11 @@ text-align:center;
 .left_nav_li:last-child{
 	border-right:0;
 }
-.center{
-	margin:10px 0;
-	width:100%;
+.center {
+margin: 1em 1em 0 1em;
+clear: both;
+width: initial;
+float: none;
 }
 .e_form p{
 	clear:both;
