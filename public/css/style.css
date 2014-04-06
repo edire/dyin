@@ -842,6 +842,7 @@ display:block;
 width: 100%;
 clear: both;
 float: none;
+position: fixed;
 }
 .left_nav{
 display: -webkit-box;
@@ -868,7 +869,7 @@ text-align:center;
 	border-right:0;
 }
 .center {
-margin: 1em 1em 0 1em;
+margin: 4em 1em 0 1em;
 clear: both;
 width: initial;
 float: none;
