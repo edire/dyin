@@ -824,6 +824,9 @@ line-height:25px}
 
 
 @media screen and (max-width: 980px){
+.computer{
+display:none;
+}
 .phone{
 display:block;
 }
