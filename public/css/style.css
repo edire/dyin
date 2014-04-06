@@ -843,6 +843,7 @@ width: 100%;
 clear: both;
 float: none;
 position: fixed;
+z-index:1000
 }
 .left_nav{
 display: -webkit-box;
