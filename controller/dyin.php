@@ -155,10 +155,10 @@ class dyin extends spController{
 					);
 					$take=$yin->update($conditions,$action);
 					if($take){
-						$this->success('领取成功');
+						$this->success('领取成功',spUrl('admin','mytake'));
 						}	
 				}else{
-					$this->error('错误操作');
+					$this->error('已经被别人领走了哦');
 		}
 
 		}
@@ -216,7 +216,8 @@ class dyin extends spController{
 //完成任务
 	function finishaction(){
 if ((($_FILES["pic"]["type"] == "image/jpeg")
-|| ($_FILES["pic"]["type"] == "image/pjpeg"))
+|| ($_FILES["pic"]["type"] == "image/pjpeg")
+|| ($_FILES["pic"]["type"] == "image/png"))
 && ($_FILES["pic"]["size"] < 1024000)){
   if ($_FILES["pic"]["error"] > 0)
     {
