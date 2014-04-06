@@ -5,8 +5,8 @@
 		  <{foreach from=$userinfo item=info}>
 		  <p class="self_name"><{$info.username}></p>
           <p class="self_abc">D 号:<{$info.id}></p>
-          <p class="self_abc">D 币:<{$info.db}><a href="#" class="self_abc_a">详情</a></p>
-          <p class="self_abc">财富:<{$info.money}><a href="#" class="self_abc_a">充值</a></p>
+          <p class="self_abc">D 币:<{$info.db}><a href="<{spUrl c=main a=help}>" class="self_abc_a" >详情</a></p>
+          <p class="self_abc">财富:<{$info.money}><a href="#" class="self_abc_a" onclick="alert('暂无充值服务')">充值</a></p>
 		  <{/foreach}>
 		</div>
 	</div>
