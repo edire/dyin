@@ -51,6 +51,7 @@ class main extends spController
 		$this->yin=$dyin;
 		$this->uid=$_SESSION["uid"];
 		$this->pager = $yin->pagedata;
+		$this->dyinnumber=$yin->findCount();
 		$this->display("Index/index.htm");
 	}
 //搜索
@@ -233,7 +234,25 @@ function search(){
 		$mysql=$user->create($action);			//插入数据库
 	
 	if($mysql){								//判断
-		$this->success('注册成功！',spUrl('main','index'));
+		
+		
+		
+
+
+		$sql=$user->findAll(array('username'=>$username));
+		if($sql){
+			if($sql[0][password]==md5($password)){
+				$_SESSION['uid']=$sql[0][id];
+				$user->update(array('username'=>$username),array('logintime'=>time()));
+				$this->jump(spUrl('main','index'));
+			}else{
+					$this->error("密码错误。",spUrl('admin','login'));
+			};
+		}else{	
+					$this->error("用户名错误。",spUrl('admin','login'));
+		}
+	$this->success('注册成功！',spUrl('main','index'));
+		
 	}else{
 		$this->error('注册失败！请重试！');
 	}

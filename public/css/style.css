@@ -868,6 +868,8 @@ display: box;
 }
 .left_nav_a{
 text-align:center;
+white-space:nowrap; 
+text-overflow:ellipsis;
 }
 .left_nav_li:first-child{
 	border-left:0;

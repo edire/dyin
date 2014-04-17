@@ -50,10 +50,10 @@ function sign(){//提交注册
 		pass.focus();
 		return 0;
 	}
-	if (email.value==""){
-		email.focus();
-		return 0;
-	}
+	//if (email.value==""){
+		//email.focus();
+		//return 0;
+	//}
 	if(qq.value==""){
 		qq.focus();
 		return 0;
