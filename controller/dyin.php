@@ -16,6 +16,7 @@ class dyin extends spController{
 			$user=spClass('user');
 			$uid=$_SESSION["uid"];
 			$result=$user->findAll(array('id'=>$uid));
+			$result=uhtml($result);
 			$db=$result[0][db];
 			if($db<=0){
 			$this->error('请确认你的D币数！');
@@ -32,10 +33,12 @@ class dyin extends spController{
 				'rid'=>0,
 				'pic'=>"/public/images/noimg.jpg"
 			);
+			$addcontent=uhtml($addcontent);
 			$action=$yin->create($addcontent);
 			if($action){
 			$addcondition=array('id'=>$uid);
 			$sql=$user->findminus($addcondition);
+			$sql=uhtml($sql);
 			if($sql){
 				$this->success('添加成功！');
 			}else{
@@ -50,6 +53,8 @@ class dyin extends spController{
 			$yin=spClass("yin");
 			$conditions=array("id"=>$this->spArgs("id"));
 			$newyin=$this->spArgs();
+			$conditions=uhtml($conditions);
+			$newyin=uhtml($newyin);
 			$action=$yin->update($conditions,$newyin);
 			if($action){
 				$this->success('修改成功！',spUrl('admin','mymake'));
@@ -61,6 +66,7 @@ class dyin extends spController{
 		function delete(){
 			$yin=spClass("yin");
 			$conditions=array("id"=>$this->spArgs("id"));
+			$conditions=uhtml($conditions);
 			$action=$yin->delete($conditions);
 			if($action){
 				$this->success('删除成功！');
@@ -76,6 +82,7 @@ class dyin extends spController{
 				$yin=spClass("yin");
 				$user=spClass("user");	
 				$yin=$yin->findAll(array('uid'=>1),'updatetime DESC');
+				$yin=uhtml($yin);
 				$i=0;
 				if($yin){
 					foreach($yin as $value){				//实例化
@@ -100,6 +107,7 @@ class dyin extends spController{
 					$i++;
 				}
 				}
+				$yin=uhtml($yin);
 				$this->yin=$yin;
 				$this->display("Index/index.htm");
 		}
@@ -118,21 +126,24 @@ class dyin extends spController{
 			$uid=$_SESSION["uid"];
 			$user=spClass("user");
 			$userinfo=$user->findAll(array('id'=>$uid));
+			$userinfo=uhtml($userinfo);
 			$this->userinfo=$userinfo;
 			}
 			
 			$id=$this->spArgs('id');
+			$id=uhtml($id);
 			$this->id=$id;
 			$this->uid=$_session['uid'];			//session
 			$yin=spClass('yin');
 			$sql=$yin->findAll(array('id'=>$id));
+			$sql=uhtml($sql);
 			$this->yin=$sql;
 			$this->uid=$_SESSION['uid'];
 			$this->display("Index/motify.htm");
 		}
 //完成任务页面
 		function finish(){
-			$this->id=$this->spArgs('id');
+			$this->id=uhtml($this->spArgs('id'));
 			$this->display('Index/finish.htm');
 		}
 		
@@ -142,6 +153,7 @@ class dyin extends spController{
 		function take(){
 			$yin=spClass('yin');
 			$sql=$yin->findAll(array('id'=>$this->spArgs('id')));
+			$sql=uhtml($sql);
 			if($sql[0][uid]==$_SESSION['uid']){
 			$this->error('不可领取自己发布的Dyin');
 			}
@@ -153,6 +165,8 @@ class dyin extends spController{
 					'rid'=>$_SESSION['uid'],
 					'finish'=>3
 					);
+					$conditions=uhtml($conditions);
+					$action=uhtml($action);
 					$take=$yin->update($conditions,$action);
 					if($take){
 						$this->success('领取成功',spUrl('admin','mytake'));
@@ -165,9 +179,12 @@ class dyin extends spController{
 //点到最前面
 	function top(){
 		$id=$this->spArgs('id');
+		$id=uhtml($id);
 		$yin=spClass('yin');
 		$conditions=array('id'=>$id);
 		$action=array('updatetime'=>time());
+		$conditions=uhtml($conditions);
+		$action=uhtml($action);
 		$sql=$yin->update($conditions,$action);
 		if($sql){
 			$this->success("操作成功");
@@ -178,9 +195,12 @@ class dyin extends spController{
 //退回任务
 	function turn(){
 		$id=$this->spArgs('id');
+		$id=uhtml($id);
 		$yin=spClass('yin');
 		$conditions=array('id'=>$id);
 		$action=array('rid'=>'0','finish'=>'0');
+		$conditions=uhtml($conditions);
+		$action=uhtml($action);
 		$sql=$yin->update($conditions,$action);
 		if($sql){
 			$this->success("操作成功");
@@ -191,14 +211,17 @@ class dyin extends spController{
 //删除领取
 	function deletetake(){
 		$id=$this->spArgs('id');
+		$id=uhtml($id);
 		$yin=spClass('yin');
 		$result=$yin->findAll(array('id'=>$id));
+		$result=uhtml($result);
 		if($result[0][rid]!=$_SESSION["uid"]){
 		$this->error('操作错误');
 		}
 		$conditions=array('id'=>$id);
 		$action=array('rid'=>0,'updatetime'=>time());
 		$sql=$yin->update($conditions,$action);
+		$sql=uhtml($sql);
 		if($sql){
 			$rid=$result[0][rid];
 			$user=spClass('user');
@@ -238,6 +261,7 @@ $this->error("上传错误请重新上传！");
 	  $conditions=array('id'=>$this->spArgs('id'));
 	  $action=array('finish'=>2,'pic'=>"upload/" . $filename_name.".jpg");
 	  $sql=$yin->update($conditions,$action);
+	  $sql=uhtml($sql);
 	  if($sql){
 		$this->success("完成任务",spUrl('admin','mytake'));
 	  }else{
