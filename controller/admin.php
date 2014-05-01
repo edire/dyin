@@ -198,6 +198,8 @@ class admin extends spController{
 			$this->error('已经确认过了！',spUrl('admin','mymake'));
 		}
 		$action=array('finish'=>1);
+		$conditions=uhtml($conditions);
+		$action=uhtml($action);
 		$sql=$yin->update($conditions,$action);
 		if($sql){
 			$result=$yin->findAll($conditions);
@@ -221,6 +223,8 @@ class admin extends spController{
 		$user=spClass('user');
 		$conditions=array('id'=>$_SESSION["uid"]);
 		$action=$this->spArgs();
+		$conditions=uhtml($conditions);
+		$action=uhtml($action);
 		$sql=$user->update($conditions,$action);
 		if($sql){
 			$this->jump(spUrl('admin','myinfo'));
@@ -233,6 +237,9 @@ class admin extends spController{
 		$pswd0=$this->spArgs('password0');
 		$pswd1=$this->spArgs('password1');
 		$pswd2=$this->spArgs('password2');
+		$pswd0=uhtml($pswd0);
+		$pswd1=uhtml($pswd1);
+		$pswd2=uhtml($pswd2);
 		if(empty($pswd0) || empty($pswd1) || empty($pswd2)){
 			$this->error('请填写完整');
 		}

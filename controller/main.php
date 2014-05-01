@@ -231,6 +231,7 @@ function search(){
 	'signtime'=>time(),
 	'ip'=>getip()
 	);
+	$action=uhtml($action);
 		$mysql=$user->create($action);			//插入数据库
 	
 	if($mysql){								//判断
@@ -243,6 +244,7 @@ function search(){
 		if($sql){
 			if($sql[0][password]==md5($password)){
 				$_SESSION['uid']=$sql[0][id];
+				$sql=uhtml($sql);
 				$user->update(array('username'=>$username),array('logintime'=>time()));
 				$this->jump(spUrl('main','index'));
 			}else{

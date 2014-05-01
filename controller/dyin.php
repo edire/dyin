@@ -32,6 +32,7 @@ class dyin extends spController{
 				'rid'=>0,
 				'pic'=>"/public/images/noimg.jpg"
 			);
+			$addcontent=uhtml($addcontent);
 			$action=$yin->create($addcontent);
 			if($action){
 			$addcondition=array('id'=>$uid);
@@ -50,6 +51,8 @@ class dyin extends spController{
 			$yin=spClass("yin");
 			$conditions=array("id"=>$this->spArgs("id"));
 			$newyin=$this->spArgs();
+			$conditions=uhtml($conditions);
+			$newyin=uhtml($newyin);
 			$action=$yin->update($conditions,$newyin);
 			if($action){
 				$this->success('修改成功！',spUrl('admin','mymake'));
@@ -61,6 +64,7 @@ class dyin extends spController{
 		function delete(){
 			$yin=spClass("yin");
 			$conditions=array("id"=>$this->spArgs("id"));
+			$conditions=uhtml($conditions);
 			$action=$yin->delete($conditions);
 			if($action){
 				$this->success('删除成功！');
@@ -153,6 +157,8 @@ class dyin extends spController{
 					'rid'=>$_SESSION['uid'],
 					'finish'=>3
 					);
+					$conditions=uhtml($conditions);
+					$actions=uhtml($action);
 					$take=$yin->update($conditions,$action);
 					if($take){
 						$this->success('领取成功',spUrl('admin','mytake'));
@@ -168,6 +174,8 @@ class dyin extends spController{
 		$yin=spClass('yin');
 		$conditions=array('id'=>$id);
 		$action=array('updatetime'=>time());
+		$conditions=uhtml($conditions);
+		$actions=uhtml($action);
 		$sql=$yin->update($conditions,$action);
 		if($sql){
 			$this->success("操作成功");
@@ -181,6 +189,8 @@ class dyin extends spController{
 		$yin=spClass('yin');
 		$conditions=array('id'=>$id);
 		$action=array('rid'=>'0','finish'=>'0');
+		$conditions=uhtml($conditions);
+		$actions=uhtml($action);
 		$sql=$yin->update($conditions,$action);
 		if($sql){
 			$this->success("操作成功");
@@ -198,6 +208,8 @@ class dyin extends spController{
 		}
 		$conditions=array('id'=>$id);
 		$action=array('rid'=>0,'updatetime'=>time());
+		$conditions=uhtml($conditions);
+		$actions=uhtml($action);
 		$sql=$yin->update($conditions,$action);
 		if($sql){
 			$rid=$result[0][rid];
@@ -237,6 +249,8 @@ $this->error("上传错误请重新上传！");
 	  $yin=spClass('yin');
 	  $conditions=array('id'=>$this->spArgs('id'));
 	  $action=array('finish'=>2,'pic'=>"upload/" . $filename_name.".jpg");
+	  $conditions=uhtml($conditions);
+	  $actions=uhtml($action);
 	  $sql=$yin->update($conditions,$action);
 	  if($sql){
 		$this->success("完成任务",spUrl('admin','mytake'));
