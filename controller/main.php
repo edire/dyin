@@ -25,6 +25,7 @@ class main extends spController
 		// $yin=$yin->findme("finish='0'",'updatetime DESC');
 		$conditions=array(finish=>0);
 		$dyin=$yin->findme($conditions,$this->spArgs('page', $page), 20);
+		$dyin=uhtml($dyin);
 		$i=0;
 		if($dyin){
 			foreach($dyin as $value){
@@ -48,6 +49,9 @@ class main extends spController
 		$conditions=array('id'=>$_SESSION["uid"]);
 		$userinfo=$user->findAll($conditions);
 		$username=$userinfo[0]['username'];
+		$dyin=uhtml($dyin);
+		$userinfo=uhtml($userinfo);
+		$username=uhtml($username);
 		$this->yin=$dyin;
 		$this->uid=$_SESSION["uid"];
 		$this->pager = $yin->pagedata;
@@ -60,6 +64,7 @@ function search(){
 			$uid=$_SESSION["uid"];
 			$user=spClass("user");
 			$userinfo=$user->findAll(array('id'=>$uid));
+			$userinfo=uhtml($userinfo);
 			$this->userinfo=$userinfo;
 			}
 			
@@ -71,10 +76,12 @@ function search(){
 			$page=1;
 		}
 		$keyword=$this->spArgs('keyword');
+		$keyword=uhtml($keyword);
 		$yin=spClass("yin");
 		// $yin=$yin->findme("finish='0'",'updatetime DESC');
 		$conditions="content like '%$keyword%'";
 		$dyin=$yin->findme($conditions,$this->spArgs('page', $page), 20);
+		$dyin=uhtml($dyin);
 		$i=0;
 		if($dyin){
 			foreach($dyin as $value){
@@ -98,6 +105,9 @@ function search(){
 		$conditions=array('id'=>$_SESSION["uid"]);
 		$userinfo=$user->findAll($conditions);
 		$username=$userinfo[0]['username'];
+		$dyin=uhtml($dyin);
+		$userinfo=uhtml($userinfo);
+		$username=uhtml($username);
 		$this->yin=$dyin;
 		$this->uid=$_SESSION["uid"];
 		$this->pager = $yin->pagedata;
@@ -107,6 +117,7 @@ function search(){
 	function all(){
 		
 		$dyin=$yin->findAll('updatetime DESC',$this->spArgs('page', $page), 2);
+		$dyin=uhtml($dyin);
 		$i=0;
 		if($dyin){
 			foreach($yin as $value){
@@ -125,6 +136,7 @@ function search(){
 			$i++;
 		}
 		}
+		$dyin=uhtml($dyin);
 		$this->yin=$dyin;
 		if(!empty($_SESSION["uid"])){
 			$this->display("Index/head_login.htm");
@@ -168,8 +180,8 @@ function search(){
 		return($ip); 
 		} 
 	$user=spClass('user');
-	$username=$this->spArgs('username');
-	$password=$this->spArgs('password');
+	$username=uhtml($this->spArgs('username'));
+	$password=uhtml($this->spArgs('password'));
 			if(empty($username)){			//检测用户名
 				$this->error("请填写用户名！");
 			}
@@ -178,6 +190,7 @@ function search(){
 			}
 
 	$sql=$user->findAll(array('username'=>$username));
+	$sql=uhtml($sql);
 	if($sql){
 		if($sql[0][password]==md5($password)){
 			$_SESSION['uid']=$sql[0][id];
@@ -207,8 +220,8 @@ function search(){
 		$ip = "unknown"; 
 		return($ip); 
 		} 
-	$username=$this->spArgs('username');
-	$password=$this->spArgs('password');
+	$username=uhtml($this->spArgs('username'));
+	$password=uhtml($this->spArgs('password'));
 			if(empty($username)){			//检测用户名
 				$this->error("请填写用户名！",spUrl('main','sign'));
 			}
@@ -216,6 +229,7 @@ function search(){
 				$this->error("请填写密码",spUrl('main','sign'));
 			}
 	$sql=$user->findAll(array('username'=>$username));
+	$sql=uhtml($user);
 	if($sql){
 				$this->error("用户名已经被占用。",spUrl('main','sign'));
 	}
@@ -231,6 +245,7 @@ function search(){
 	'signtime'=>time(),
 	'ip'=>getip()
 	);
+	$action=uhtml($action);
 		$mysql=$user->create($action);			//插入数据库
 	
 	if($mysql){								//判断
@@ -240,6 +255,7 @@ function search(){
 
 
 		$sql=$user->findAll(array('username'=>$username));
+		$sql=uhtml($sql);
 		if($sql){
 			if($sql[0][password]==md5($password)){
 				$_SESSION['uid']=$sql[0][id];
