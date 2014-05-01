@@ -23,6 +23,7 @@ class admin extends spController{
 				$uid=$_SESSION["uid"];
 				$user=spClass("user");
 				$userinfo=$user->findAll(array('id'=>$uid));
+				$userinfo=uhtml($userinfo);
 				$this->userinfo=$userinfo;
 				$yin=spClass("yin");
 				//获取信息完毕
@@ -36,7 +37,7 @@ class admin extends spController{
 		}
 				$conditions=array('rid'=>$_SESSION["uid"]);
 				$dyin=$yin->findme($conditions,$this->spArgs('page', $page), 20);
-				
+				$dyin=uhtml($dyin);
 				$i=0;
 				if($dyin){
 					foreach($dyin as $value){				//实例化
@@ -62,6 +63,7 @@ class admin extends spController{
 					$i++;
 				}
 				}
+				$dyin=uhtml($dyin);
 				$this->yin=$dyin;
 				$this->pager = $yin->pagedata;
 				$this->display("Index/mytake.htm");
@@ -73,6 +75,7 @@ class admin extends spController{
 				$uid=$_SESSION["uid"];
 				$user=spClass("user");
 				$userinfo=$user->findAll(array('id'=>$uid));
+				$userinfo=uhtml($userinfo);
 				$this->userinfo=$userinfo;
 				$yin=spClass("yin");
 				//获取信息完毕
@@ -85,6 +88,7 @@ class admin extends spController{
 		}
 				$conditions=array('uid'=>$_SESSION["uid"]);
 				$dyin=$yin->findme($conditions,$this->spArgs('page', $page), 20);
+				$dyin=uhtml($dyin);
 				$i=0;
 				if($dyin){
 					foreach($dyin as $value){				//实例化
@@ -110,6 +114,7 @@ class admin extends spController{
 					$i++;
 				}
 				}
+					$dyin=uhtml($dyin);
 				$this->yin=$dyin;
 				$this->pager = $yin->pagedata;
 				$this->display("Index/mymake.htm");
@@ -121,6 +126,7 @@ class admin extends spController{
 				$uid=$_SESSION["uid"];
 				$user=spClass("user");
 				$userinfo=$user->findAll(array('id'=>$uid));
+				$userinfo=uhtml($userinfo);
 				$this->userinfo=$userinfo;
 				$yin=spClass("yin");
 				//获取信息完毕
@@ -129,6 +135,7 @@ class admin extends spController{
 				$user=$userdb->findAll(array('id'=>$uid));
 				$user[0][logintime]=date("Y-m-d H:i:s",$user[0][logintime]);
 				$user[0][signtime]=date("Y-m-d H:i:s",$user[0][signtime]);
+				$user=uhtml($user);
 				$this->user=$user;
 				$this->username=$user[0][username];
 				$this->display('Index/userinfo.htm');
@@ -140,12 +147,14 @@ class admin extends spController{
 				$uid=$_SESSION["uid"];
 				$user=spClass("user");
 				$userinfo=$user->findAll(array('id'=>$uid));
+				$userinfo=uhtml($userinfo);
 				$this->userinfo=$userinfo;
 				//获取信息完毕
 				$userdb=spClass('user');
 				$user=$userdb->findAll(array('id'=>$uid));
 				$user[0][logintime]=date("Y-m-d H:i:s",$user[0][logintime]);
 				$user[0][signtime]=date("Y-m-d H:i:s",$user[0][signtime]);
+				$user=uhtml($user):
 				$this->user=$user;
 				$this->display('Index/myinfo.htm');
 		}
@@ -156,21 +165,25 @@ class admin extends spController{
 				$uid=$_SESSION["uid"];
 				$user=spClass("user");
 				$userinfo=$user->findAll(array('id'=>$uid));
+				$userinfo=uhtml($userinfo);
 				$this->userinfo=$userinfo;
 				//获取信息完毕
 				$userdb=spClass('user');
 				$user=$userdb->findAll(array('id'=>$uid));
+				$user=uhtml($user);
 				$this->user=$user;
 				$this->display('Index/info_edit.htm');
 		}
 //确认页面
 		function affirm(){
 				$id=$this->spArgs('id');
+				$id=uhtml($id);
 				$this->id=$id;
 				$yin=spClass('yin');
 				$sql=$yin->findAll(array('id'=>$id));
 				if($sql){
 					$sql[0][createtime]=date("Y-m-d H:i:s",$sql[0][createtime]);	//格式化时间
+				        $sql=uhtml($sql);
 					$this->yin=$sql;
 				}
 				$this->display('Index/affirm.htm');
@@ -182,6 +195,7 @@ class admin extends spController{
 				$uid=$_SESSION["uid"];
 				$user=spClass("user");
 				$userinfo=$user->findAll(array('id'=>$uid));
+				$userinfo=uhtml($userinfo);
 				$this->userinfo=$userinfo;
 				//获取信息完毕
 				$this->display('Index/editpassword.htm');
@@ -194,6 +208,7 @@ class admin extends spController{
 		$id=$this->spArgs('id');
 		$yin=spClass('yin');
 		$conditions=array('id'=>$id);
+		$conditions=uhtml($conditions);
 		if($sql[0]['finish']==1){
 			$this->error('已经确认过了！',spUrl('admin','mymake'));
 		}
@@ -201,9 +216,11 @@ class admin extends spController{
 		$sql=$yin->update($conditions,$action);
 		if($sql){
 			$result=$yin->findAll($conditions);
+			$result=uhtml($result);
 			$rid=$result[0][rid];
 			$user=spClass('user');
 			$addcondition=array('id'=>$rid);
+			$addcondition=uthml($addcondition);
 			$sql=$user->findadd($addcondition);
 			$sql=$user->findmoneyadd($addcondition,'1');
 			if($sql){
@@ -221,7 +238,10 @@ class admin extends spController{
 		$user=spClass('user');
 		$conditions=array('id'=>$_SESSION["uid"]);
 		$action=$this->spArgs();
+		$conditions=uhtml($conditions);
+		$action=uhtml($action);
 		$sql=$user->update($conditions,$action);
+		$sql=uhtml($sql);
 		if($sql){
 			$this->jump(spUrl('admin','myinfo'));
 		}else{
@@ -233,6 +253,9 @@ class admin extends spController{
 		$pswd0=$this->spArgs('password0');
 		$pswd1=$this->spArgs('password1');
 		$pswd2=$this->spArgs('password2');
+		$pswd0=uhtml($pswd0);
+		$pswd1=uhtml($pswd1);
+		$pswd2=uhtml($pswd2);
 		if(empty($pswd0) || empty($pswd1) || empty($pswd2)){
 			$this->error('请填写完整');
 		}
@@ -241,6 +264,7 @@ class admin extends spController{
 		}
 		$user=spClass('user');
 		$sql=$user->findAll(array('id'=>$_SESSION['uid']));
+		$sql=uhtml($sql);
 		if(md5($pswd0)==$sql[0][password]){
 			$sql=$user->update(array('id'=>$_SESSION['uid']),array('password'=>md5($pswd1)));
 			if($sql){
