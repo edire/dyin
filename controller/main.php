@@ -58,7 +58,7 @@ class main extends spController
 		$this->dyinnumber=$yin->findCount();
 		$this->display("Index/index.htm");
 	}
-//搜索
+//搜索a
 function search(){
 		if(!empty($_SESSION["uid"])){
 			$uid=$_SESSION["uid"];
