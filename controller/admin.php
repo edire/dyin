@@ -3,7 +3,7 @@ class admin extends spController{
 
 	function __construct(){
 		// 一些操作
-		
+
 		if(empty($_SESSION["uid"])){
 			$this->error("请登录。",spUrl('main','login'));
 		}
@@ -26,7 +26,7 @@ class admin extends spController{
 				$this->userinfo=$userinfo;
 				$yin=spClass("yin");
 				//获取信息完毕
-				
+
 		//初始化分页
 		if($this->spArgs('page'))
 		{
@@ -36,7 +36,7 @@ class admin extends spController{
 		}
 				$conditions=array('rid'=>$_SESSION["uid"]);
 				$dyin=$yin->findme($conditions,$this->spArgs('page', $page), 20);
-				
+
 				$i=0;
 				if($dyin){
 					foreach($dyin as $value){				//实例化
@@ -186,7 +186,7 @@ class admin extends spController{
 				//获取信息完毕
 				$this->display('Index/editpassword.htm');
 		}
-	
+
 //--------------------------------------------
 
 //确认完成动作
@@ -198,6 +198,8 @@ class admin extends spController{
 			$this->error('已经确认过了！',spUrl('admin','mymake'));
 		}
 		$action=array('finish'=>1);
+		$conditions=uhtml($conditions);
+		$action=uhtml($action);
 		$sql=$yin->update($conditions,$action);
 		if($sql){
 			$result=$yin->findAll($conditions);
@@ -214,13 +216,15 @@ class admin extends spController{
 		}else{
 			$this->error('确认失败！');
 		}
-		
+
 	}
 //个人信息修改动作
 	function infoeditaction(){
 		$user=spClass('user');
 		$conditions=array('id'=>$_SESSION["uid"]);
 		$action=$this->spArgs();
+		$conditions=uhtml($conditions);
+		$action=uhtml($action);
 		$sql=$user->update($conditions,$action);
 		if($sql){
 			$this->jump(spUrl('admin','myinfo'));
@@ -233,6 +237,9 @@ class admin extends spController{
 		$pswd0=$this->spArgs('password0');
 		$pswd1=$this->spArgs('password1');
 		$pswd2=$this->spArgs('password2');
+		$pswd0=uhtml($pswd0);
+		$pswd1=uhtml($pswd1);
+		$pswd2=uhtml($pswd2);
 		if(empty($pswd0) || empty($pswd1) || empty($pswd2)){
 			$this->error('请填写完整');
 		}
@@ -251,9 +258,9 @@ class admin extends spController{
 		}else{
 			$this->error('旧密码输入错误');
 		}
-		
+
 		$conditions=array('id'=>$_SESSION["uid"]);
-	
+
 	}
 //退出，清除session
 	function loginoutaction(){

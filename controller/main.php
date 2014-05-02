@@ -13,7 +13,7 @@ class main extends spController
 			$userinfo=$user->findAll(array('id'=>$uid));
 			$this->userinfo=$userinfo;
 			}
-			
+
 		//初始化分页
 		if($this->spArgs('page'))
 		{
@@ -54,7 +54,7 @@ class main extends spController
 		$this->dyinnumber=$yin->findCount();
 		$this->display("Index/index.htm");
 	}
-//搜索
+//搜索a
 function search(){
 		if(!empty($_SESSION["uid"])){
 			$uid=$_SESSION["uid"];
@@ -62,7 +62,7 @@ function search(){
 			$userinfo=$user->findAll(array('id'=>$uid));
 			$this->userinfo=$userinfo;
 			}
-			
+
 		//初始化分页
 		if($this->spArgs('page'))
 		{
@@ -105,7 +105,7 @@ function search(){
 	}
 //显示所有
 	function all(){
-		
+
 		$dyin=$yin->findAll('updatetime DESC',$this->spArgs('page', $page), 2);
 		$i=0;
 		if($dyin){
@@ -219,7 +219,7 @@ function search(){
 	if($sql){
 				$this->error("用户名已经被占用。",spUrl('main','sign'));
 	}
-	
+
 	$passwordmd5=md5($password);			//md5加密
 	$action=array(							//数据整理
 	'username'=>$username,
@@ -231,12 +231,13 @@ function search(){
 	'signtime'=>time(),
 	'ip'=>getip()
 	);
+	$action=uhtml($action);
 		$mysql=$user->create($action);			//插入数据库
-	
+
 	if($mysql){								//判断
-		
-		
-		
+
+
+
 
 
 		$sql=$user->findAll(array('username'=>$username));
@@ -252,7 +253,7 @@ function search(){
 					$this->error("用户名错误。",spUrl('admin','login'));
 		}
 	$this->success('注册成功！',spUrl('main','index'));
-		
+
 	}else{
 		$this->error('注册失败！请重试！');
 	}

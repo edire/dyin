@@ -2,7 +2,7 @@
 class dyin extends spController{
 	function __construct(){
 		// 一些操作
-		
+
 		if(empty($_SESSION["uid"])){
 			$this->error("请登录。",spUrl('main','login'));
 		}
@@ -32,6 +32,7 @@ class dyin extends spController{
 				'rid'=>0,
 				'pic'=>"/public/images/noimg.jpg"
 			);
+			$addcontent=uhtml($addcontent);
 			$action=$yin->create($addcontent);
 			if($action){
 			$addcondition=array('id'=>$uid);
@@ -50,6 +51,8 @@ class dyin extends spController{
 			$yin=spClass("yin");
 			$conditions=array("id"=>$this->spArgs("id"));
 			$newyin=$this->spArgs();
+			$conditions=uhtml($conditions);
+			$newyin=uhtml($newyin);
 			$action=$yin->update($conditions,$newyin);
 			if($action){
 				$this->success('修改成功！',spUrl('admin','mymake'));
@@ -61,6 +64,7 @@ class dyin extends spController{
 		function delete(){
 			$yin=spClass("yin");
 			$conditions=array("id"=>$this->spArgs("id"));
+			$conditions=uhtml($conditions);
 			$action=$yin->delete($conditions);
 			if($action){
 				$this->success('删除成功！');
@@ -68,8 +72,8 @@ class dyin extends spController{
 				$this->error('删除失败！');
 			}
 		}
-		
-		
+
+
 //-----------------------------------------------------
 //显示我发布的任务
 		function index(){
@@ -103,9 +107,9 @@ class dyin extends spController{
 				$this->yin=$yin;
 				$this->display("Index/index.htm");
 		}
-		
 
-		
+
+
 //添加任务页面
 		function add(){
 			$this->uid=$_SESSION["uid"];			//session 
@@ -113,14 +117,14 @@ class dyin extends spController{
 		}
 //修改任务页面
 		function motify(){
-		
+
 		if(!empty($_SESSION["uid"])){
 			$uid=$_SESSION["uid"];
 			$user=spClass("user");
 			$userinfo=$user->findAll(array('id'=>$uid));
 			$this->userinfo=$userinfo;
 			}
-			
+
 			$id=$this->spArgs('id');
 			$this->id=$id;
 			$this->uid=$_session['uid'];			//session
@@ -135,8 +139,8 @@ class dyin extends spController{
 			$this->id=$this->spArgs('id');
 			$this->display('Index/finish.htm');
 		}
-		
-		
+
+
 //--------------------------------------------------------------------
 //领取任务动作
 		function take(){
@@ -153,6 +157,8 @@ class dyin extends spController{
 					'rid'=>$_SESSION['uid'],
 					'finish'=>3
 					);
+					$conditions=uhtml($conditions);
+					$action=uhtml($action);
 					$take=$yin->update($conditions,$action);
 					if($take){
 						$this->success('领取成功',spUrl('admin','mytake'));
@@ -168,6 +174,8 @@ class dyin extends spController{
 		$yin=spClass('yin');
 		$conditions=array('id'=>$id);
 		$action=array('updatetime'=>time());
+		$conditions=uhtml($conditions);
+		$action=uhtml($action);
 		$sql=$yin->update($conditions,$action);
 		if($sql){
 			$this->success("操作成功");
@@ -181,6 +189,8 @@ class dyin extends spController{
 		$yin=spClass('yin');
 		$conditions=array('id'=>$id);
 		$action=array('rid'=>'0','finish'=>'0');
+		$conditions=uhtml($conditions);
+		$action=uhtml($action);
 		$sql=$yin->update($conditions,$action);
 		if($sql){
 			$this->success("操作成功");
@@ -198,6 +208,8 @@ class dyin extends spController{
 		}
 		$conditions=array('id'=>$id);
 		$action=array('rid'=>0,'updatetime'=>time());
+		$conditions=uhtml($conditions);
+		$action=uhtml($action);
 		$sql=$yin->update($conditions,$action);
 		if($sql){
 			$rid=$result[0][rid];
@@ -237,6 +249,8 @@ $this->error("上传错误请重新上传！");
 	  $yin=spClass('yin');
 	  $conditions=array('id'=>$this->spArgs('id'));
 	  $action=array('finish'=>2,'pic'=>"upload/" . $filename_name.".jpg");
+	  $conditions=uhtml($conditions);
+	  $action=uhtml($action);
 	  $sql=$yin->update($conditions,$action);
 	  if($sql){
 		$this->success("完成任务",spUrl('admin','mytake'));
